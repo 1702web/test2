@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css" />
+		<style>
+			/*#box{
+				position: relative;
+				margin: 50px auto ;
+				height: 50px;
+				width: 205px;
+				border: 1px solid #C71417;
+				overflow: hidden;
+			}*/
+			/*li{
+				width: 50px;
+			    height:50px;
+				border:1px solid #6699FF;
+				float: left;
+			}
+			
+			#box1{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width:360px;
+				
+			}
+			#butLeft{
+				background: #FFFFFF;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width:20px;
+				height: 50px;
+			}
+			#butRight{
+				background: #FFFFFF;
+				position: absolute;
+				top: 0;
+				right: 0;
+				width:20px;
+				height: 50px;
+			}*/
+			#boox{
+				margin: 200px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+		</div>
+		<div id="boox">
+			
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js" ></script>
+<script>
+          /*  left=20
+		    jqid="#box";
+			boxwidth=250;
+			boxheight=50;
+		    box1width=365;
+		    liwidth=50
+		    this.liheight=50;
+		    this.butheight=50;
+		    this.buwidth=20;
+			this.lilength=7;
+			this.ord=1;
+			this.butLeftId="butLeft";
+			this.butRightId="butRight";
+			this.box1="box1";	*/
+	
+$(function(){
+	new Zou({
+
+		  	left:20,
+		    jqid:"#box",
+			boxwidth:250,
+			boxheight:50,
+		 
+		    liwidth:50,
+		    liheight:50,
+		    butheight:50,
+		    buwidth:20,
+			lilength:6,
+			ord:2,
+			butLeftId:"butLeft",
+			butRightId:"butRight",
+			box1:"box1",
+			
+	});
+	
+	new Zou({
+
+		  	left:20,
+		    jqid:"#boox",
+		    butLeftId:"butLeft1",
+			butRightId:"butRight1",
+			box1:"boox1",
+			boxwidth:250,
+			boxheight:50,
+		    liwidth:50,
+		    liheight:50,
+		    butheight:50,
+		    buwidth:20,
+			lilength:6,
+			ord:2,
+			
+			
+	});
+	
+	
+	
+	
+	
+})
+
+function Zou(obj){
+			this.left=obj.left;
+			this.jqid=obj.jqid;
+			this.butLeftId=obj.butLeftId;
+			this.butRightId=obj.butRightId;
+			this.box1=obj.box1;
+			this.ord=obj.ord;
+			this.boxwidth=obj.boxwidth;
+			this.boxheight=obj.boxheight; 
+			
+			  
+		    this.liwidth=this.boxheight;
+		    this.liheight=this.boxheight;
+		    this.butheight=this.boxheight;
+		    this.buwidth=this.left
+			this.lilength=this.boxheight;;
+			
+			
+			 this.box1width=this.liwidth*this.lilength+this.lilength*2;
+			this.initUT();
+			this.dong();
+	}
+Zou.prototype.initUT=function(){
+		 var str="<div id='"+this.box1+"' style='left:"+this.left+"px;position: absolute;top: 0;left: 0;width:"+this.box1width+"px' ><ul class='clear'>"
+		for(var i=0;i<this.lilength;i++){
+			str+="<li style='width:"+this.liwidth+"px; height:"+this.liheight+"px;border:1px solid #6699FF;float: left;'></li>"
+		}
+str+="</ul></div><div id='"+this.butLeftId+"' style='background:#FFFFFF;position:absolute;top:0;left: 0;width:"+this.buwidth+"px;height:"+this.butheight+"px'>左</div><div id='"+this.butRightId+"' style='background: #FFFFFF;position: absolute;top: 0;right: 0;width:"+this.buwidth+"px;height:"+this.butheight+"px'>右</div></div>"
+		$(this.jqid).append(str);
+		//$("#box1").append(str);
+		$(this.jqid).css({position: "relative",
+			
+				height:this.boxheight+"px",
+				width: this.boxwidth+"px",
+				border:" 1px solid #C71417",
+				overflow: "hidden"
+	 		});	
+}
+Zou.prototype.dong=function(){
+	      var that= this;
+	      var left=this.left;
+	  // var left=this.box1width-this.boxwidth+2*this.buwidth
+	   $("#"+this.butLeftId+"").click(function(){
+	   	   
+			if(parseInt($("#"+that.box1+"").css("right"))<0){
+					$("#"+that.box1+"").stop(true,true)
+					left-=that.ord*50
+					
+					$("#"+that.box1+"").animate({left:""+left+"px"},500);
+					
+			  }
+		})
+		$("#"+this.butRightId+"").click(function(){
+			if(parseInt($("#"+that.box1+"").css("left"))<0){
+			  	$("#"+that.box1+"").stop(true,true)
+				left+=that.ord*50
+				
+				$("#"+that.box1+"").animate({left:""+left+"px"},500);
+				
+			}
+		})
+	
+}
+</script>
